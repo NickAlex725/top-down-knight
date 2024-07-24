@@ -1,6 +1,26 @@
 #include "raylib.h"
 #include "raymath.h"
 
+class Character
+{
+public:
+    Vector2 getWorldPos() { return WorldPos; }+
+    
+private:
+    Texture2D texture;
+    Texture2D idle;
+    Texture2D run;
+    Vector2 ScreenPos;
+    Vector2 WorldPos;
+    // 1 : facing right, -1 : facing left                    
+    float rightLeft = 1.f;
+    // animation variables
+    float runningTime;
+    int frame;
+    const int maxFrames = 6;
+    const float updateTime = 1.f/12.f;
+};
+
 int main()
 {
     const int winWidth = 384;
@@ -16,14 +36,6 @@ int main()
     Texture2D knight = knight_idle;
     Vector2 knightPos = {(float)winWidth/2.0f - 4.0f * (0.5f * (float)knight.width/6.0f),
                         (float)winHeight/2.0f - 4.0f * (0.5f * (float)knight.height)};
-    // 1 : facing right, -1 : facing left                    
-    float rightLeft = 1.f;
-    // animation variables
-    float runningTime;
-    int frame;
-    const int maxFrames = 6;
-    const float updateTime = 1.f/12.f;
-
 
     SetTargetFPS(60);
     while (!WindowShouldClose())
