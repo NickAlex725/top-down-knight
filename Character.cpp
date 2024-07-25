@@ -1,22 +1,25 @@
 #include "Character.h"
 #include "raymath.h"
 
-Character::Character()
+Character::Character(int winWidth, int winHeight)
 {
     width = texture.width/maxFrames;
     height = texture.height;
-}
-
-void Character::setScreenPos(int winWidth, int winHeight)
-{
     screenPos = {
         (float)winWidth/2.0f - 4.0f * (0.5f * width),
         (float)winHeight/2.0f - 4.0f * (0.5f * height)
     };
 }
 
+void Character::undoMovement()
+{
+    worldPos = worldPosLastFrame;
+}
+
 void Character::tick(float deltaTime)
 {
+    worldPosLastFrame = worldPos;
+
     Vector2 direction{};
     if(IsKeyDown(KEY_A)) direction.x -= 1.0;
     if(IsKeyDown(KEY_D)) direction.x += 1.0;
