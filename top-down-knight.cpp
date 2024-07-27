@@ -2,6 +2,7 @@
 #include "raymath.h"
 #include "Character.h"
 #include "Prop.h"
+#include "Enemy.h"
 
 int main()
 {
